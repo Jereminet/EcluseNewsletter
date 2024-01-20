@@ -21,5 +21,4 @@ body <- paste(body)
 
 ### SENDING EMAIL TO TARGETS ==================================================
 email <- send.mail(from = sender, to = targets, subject = subject, body = body, 
-                   smtp = smtp_info, html = TRUE, authenticate = TRUE, send = FALSE)
-email$send()
+                   smtp = smtp_info, html = TRUE, authenticate = TRUE)
