@@ -8,7 +8,7 @@ params    <- yaml.load_file("params.yaml")
 sender    <- params$sender
 targets   <- params$recipients
 subject   <- params$subject
-pw <- Sys.getenv("MAIL_PWD")
+pw        <- Sys.getenv("MAIL_PWD")
 smtp      <- params$outlook_smtp
 form_url  <- params$form_url
 smtp_info <- list(host.name = smtp, port = 587, user.name = sender, passwd = pw, tls = TRUE)
