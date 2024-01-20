@@ -1,20 +1,24 @@
-# https://mailtrap.io/blog/r-send-email/
-# Install JAVA JDK FIRST 
+### PACKAGE IMPORTS ===========================================================
+library(yaml)
+library(glue)
 library(mailR)
 
-sender <- "gintonewsletter@outlook.com"
-recipients <- c("guidallemagne@hotmail.com", "jeremy.minet.97@hotmail.com")
-subject <- "Test email via Rscript"
-body <- "Hello mon louf, cet email a été envoyé depuis R"
-pw <- "bouzoulewifi69"
-outlook_smtp <- "smtp-mail.outlook.com"
+### YAML IMPORT AND USEFUL VALUES DEFINITION ==================================
+params    <- yaml.load_file("params.yaml")
+sender    <- params$sender
+targets   <- params$recipients
+subject   <- params$subject
+pw        <- params$pw
+smtp      <- params$outlook_smtp
+form_url  <- params$form_url
+smtp_info <- list(host.name = smtp, port = 587, user.name = sender, passwd = pw, tls = TRUE)
 
-smtp_info <- list(host.name = outlook_smtp, port = 587, user.name = sender, passwd = pw, tls = TRUE)
+### EMAIL BODY COMPOSITION ====================================================
+body <- glue("Bonjour les loufettes et loufs! \n\n
+              Vous pourriez compléter ce <a href='{form_url}'>Google form</a>?\n 
+              Grosses bises, on vous envoie les résultats rapidement!")
+body <- paste(body)
 
-status <- send.mail(from = sender,
-                    to = recipients,
-                    subject = subject,
-                    body = body,
-                    smtp = smtp_info,
-                    authenticate = TRUE,
-                    send = TRUE)
+### SENDING EMAIL TO TARGETS ==================================================
+email <- send.mail(from = sender, to = targets, subject = subject, body = body, 
+                   smtp = smtp_info, html = TRUE, authenticate = TRUE)

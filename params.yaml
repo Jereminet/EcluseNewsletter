@@ -1,0 +1,6 @@
+sender: "gintonewsletter@outlook.com"
+recipients: ["guidallemagne@hotmail.com", "jeremy.minet.97@hotmail.com"]
+subject: "Test email via Rscript - form link"
+pw: "bouzoulewifi69"
+outlook_smtp: "smtp-mail.outlook.com"
+form_url: "https://forms.gle/LMMjeNuUFEE3u48y8"
