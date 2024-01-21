@@ -1,8 +1,8 @@
 on:
   push:
-    branches: main
+    branches: main #TODO: eventually remove this line, for testing purpose
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 16 * * *' #Every day at 4 PM
 jobs:
   call-r-script:
     runs-on: ubuntu-latest
@@ -18,11 +18,17 @@ jobs:
             any::glue
             any::mailR
             any::yaml
+            any::googledrive
 
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Import data
+      - name: Send weekly email
         env:
-          MAIL_PWD : ${{ secrets.MAILPWD }}
-        run: Rscript -e 'source("send_mail.R")'
+          MAIL_PWD: ${{ secrets.MAILPWD }}
+        run: Rscript -e 'source("weekly_task.R")'
+        
+      #- name: Send monthly email
+      #  env:
+      #    SA_SECRET: ${{ secrets.SA_SECRET }}
+      #  run: Rscript -e 'source("monthly_task.R")'

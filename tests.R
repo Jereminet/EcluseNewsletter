@@ -1,3 +1,5 @@
+### This script is for testing purposes so meant to be deleted eventually
+
 ### PACKAGE IMPORTS ===========================================================
 library(yaml)
 library(googledrive)
