@@ -27,7 +27,9 @@ res_list <- list()
 respondants <- unique(responses$email_address)
 for (respondant in respondants){
     tmp_data <- filter(responses, email_address == respondant)
-    res_list[[respondant]] <- tmp_data
+    res_list[[respondant]][["text"]] <- tmp_data
+    # res_list[[respondant]][["images"]] <-     #TODO: find a way to get the images and download them 
+    
 }
 
 #TODO: Create RData file as map
