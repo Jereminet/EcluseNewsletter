@@ -7,7 +7,7 @@ library(googlesheets4)
 
 ### USEFUL VALUES DEFINITION AND AUTHENTICATION ===============================
 params    <- yaml.load_file("params.yaml")
-drive_auth(path = params$json_path)
+drive_auth(email = params$sender)
 gs4_auth(params$sender)
 
 ### GETTING DRIVE CONTENT AND FILTERING BASED ON FILE NAME ====================
